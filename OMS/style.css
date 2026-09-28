@@ -1,0 +1,67 @@
+/* Container de la navbar en position relative pour servir de repère */
+.custom-navbar .container-fluid {
+    position: relative;
+}
+
+/* Couleur de fond du bandeau et épaisseur */
+.custom-navbar {
+    background-color: #0d3b66; /* Bleu OMS */
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* Taille du logo */
+.navbar-logo {
+    height: 110px;
+    width: auto;
+    display: block;
+}
+
+/* Centrage absolu du menu sur grand écran */
+@media (min-width: 992px) {
+    .custom-navbar .navbar-collapse {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Style des liens de navigation */
+.custom-navbar .nav-link {
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin: 0 18px;
+    position: relative;
+    padding-bottom: 6px;
+}
+
+/* Effet au survol */
+.custom-navbar .nav-link:hover {
+    color: #f4a261 !important;
+}
+
+/* Ligne orange sous le lien actif */
+.custom-navbar .nav-link.active-link {
+    border-bottom: 4px solid #ff6b00;
+}
+
+/* Adaptabilité Mobile / Tablette */
+@media (max-width: 991px) {
+    .navbar-logo {
+        height: 80px;
+    }
+    
+    .custom-navbar .navbar-nav {
+        text-align: center;
+        padding-top: 15px;
+    }
+    
+    .custom-navbar .nav-link {
+        margin: 10px 0;
+    }
+
+    .custom-navbar .nav-link.active-link {
+        display: inline-block;
+    }
+}

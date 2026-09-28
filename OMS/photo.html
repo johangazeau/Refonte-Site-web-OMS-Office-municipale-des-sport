@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos - OMS</title>
+    <!-- CSS Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fichier CSS personnalisé -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Bandeau de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container-fluid px-4">
+
+            <!-- Logo OMS à gauche -->
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.jpg" alt="Logo OMS" class="navbar-logo">
+            </a>
+
+            <!-- Bouton Hamburger (Mobile) -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Liens de navigation centrés -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active-link" href="photo.html">Photo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Présentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Activités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Contenu Principal -->
+    <main class="container my-5">
+
+        <!-- VUE 1 : Liste des Catégories -->
+        <section id="categories-view">
+            <!-- Filtre Date -->
+            <div class="d-flex align-items-center mb-5">
+                <div class="badge-date-container">
+                    <span class="badge-label">date :</span>
+                    <select class="form-select date-select d-inline-block w-auto">
+                        <option selected>du 02/07/2026 au 09/07/2026</option>
+                        <option>du 10/07/2026 au 17/07/2026</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Grille des catégories -->
+            <div class="row g-4">
+                <!-- Initiation Kayak -->
+                <div class="col-md-4">
+                    <div class="category-card" onclick="openGallery('Initiation kayak')">
+                        <div class="category-badge">Initiation kayak</div>
+                        <div class="img-wrapper">
+                            <img src="img/kayak.jpg" alt="Initiation kayak">
+                            <span class="btn-voir-plus">voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acrobranche -->
+                <div class="col-md-4">
+                    <div class="category-card" onclick="openGallery('Acrobranche')">
+                        <div class="category-badge">Acrobranche</div>
+                        <div class="img-wrapper">
+                            <img src="img/acrobranche1.jpg" alt="Acrobranche">
+                            <span class="btn-voir-plus">voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camping -->
+                <div class="col-md-4">
+                    <div class="category-card" onclick="openGallery('Camping')">
+                        <div class="category-badge">Camping</div>
+                        <div class="img-wrapper">
+                            <img src="img/camping1.jpg" alt="Camping">
+                            <span class="btn-voir-plus">voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Randonnée -->
+                <div class="col-md-4">
+                    <div class="category-card" onclick="openGallery('Randonnée')">
+                        <div class="category-badge">Randonnée</div>
+                        <div class="img-wrapper">
+                            <img src="img/randonnee1.jpg" alt="Randonnée">
+                            <span class="btn-voir-plus">voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tir à l'arc -->
+                <div class="col-md-4">
+                    <div class="category-card" onclick="openGallery('Tir à l\'arc')">
+                        <div class="category-badge">tir à l'arc</div>
+                        <div class="img-wrapper">
+                            <img src="img/tir-arc1.jpg" alt="Tir à l'arc">
+                            <span class="btn-voir-plus">voir plus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Escalade -->
+                <div class="col-md-4">
+                    <div class="category-card" onclick="openGallery('Escalade')">
+                        <div class="category-badge">Escalade</div>
+                        <div class="img-wrapper">
+                            <img src="img/escalade1.jpg" alt="Escalade">
+                            <span class="btn-voir-plus">voir plus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VUE 2 : Galerie complète de la catégorie sélectionnée -->
+        <section id="gallery-view" class="d-none">
+            <!-- En-tête avec bouton retour et titre de la catégorie -->
+            <div class="d-flex align-items-center mb-4 gap-3">
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="closeGallery()">← Retour aux catégories</button>
+                <div class="category-badge position-static m-0" id="gallery-title">Initiation kayak</div>
+            </div>
+
+            <!-- Grille de la galerie -->
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <img src="img/kayak.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Kayak photo 1">
+                </div>
+                <div class="col-md-4">
+                    <img src="img/kayak1.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Kayak photo 2">
+                </div>
+                <div class="col-md-4">
+                    <img src="img/kayak2.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Kayak photo 3">
+                </div>
+                <div class="col-md-3">
+                    <img src="img/kayak3.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Kayak photo 4">
+                </div>
+                <div class="col-md-3">
+                    <img src="img/kayak4.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Kayak photo 5">
+                </div>
+                <div class="col-md-3">
+                    <img src="img/kayak5.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Kayak photo 6">
+                </div>
+                <div class="col-md-3">
+                    <img src="img/kayak6.jpg" class="img-fluid rounded shadow-sm gallery-img" alt="Kayak photo 7">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script statique pour basculer entre Catégories et Galerie -->
+    <script>
+        function openGallery(categoryName) {
+            document.getElementById('categories-view').classList.add('d-none');
+            document.getElementById('gallery-view').classList.remove('d-none');
+            document.getElementById('gallery-title').innerText = categoryName;
+            window.scrollTo(0, 0);
+        }
+
+        function closeGallery() {
+            document.getElementById('gallery-view').classList.add('d-none');
+            document.getElementById('categories-view').classList.remove('d-none');
+        }
+    </script>
+</body>
+</html>

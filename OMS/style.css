@@ -1,27 +1,52 @@
-/* ===== Police et fond de la page ===== */
+/* =====================================================================
+   STYLE.CSS - Site Office Municipal des Sports (OMS)
+
+   SOMMAIRE
+   1. Base (police, fond de page)
+   2. Navigation (commune à toutes les pages)
+   3. Page Accueil (titre, pilules + enfant, bulle festival)
+   4. Page Activités (cartes d'activités)
+   5. Page Inscription (formulaire enfant / responsable)
+   6. Page Photo (sélecteur de date, catégories, galerie)
+   7. Page Contact (bouton message, réseaux sociaux, formulaire)
+   8. Mobile / Tablette (TOUJOURS EN DERNIER)
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. BASE : police et fond de la page
+   ===================================================================== */
 body {
     font-family: 'Bricolage Grotesque', Arial, sans-serif;
     background-color: #f0f0f0;
     color: #111;
 }
 
-/* ===== Navigation ===== */
+
+/* =====================================================================
+   2. NAVIGATION (toutes les pages)
+   ===================================================================== */
+
+/* Repère de positionnement pour centrer le menu */
 .custom-navbar .container-fluid {
     position: relative;
 }
 
+/* Bandeau bleu */
 .custom-navbar {
     background-color: #024073; /* Bleu OMS */
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
+/* Logo */
 .navbar-logo {
     height: 110px;
     width: auto;
     display: block;
 }
 
+/* Menu centré sur la page (grand écran uniquement) */
 @media (min-width: 992px) {
     .custom-navbar .navbar-collapse {
         position: absolute;
@@ -30,6 +55,7 @@ body {
     }
 }
 
+/* Liens du menu */
 .custom-navbar .nav-link {
     color: #ffffff !important;
     font-weight: 600;
@@ -43,11 +69,17 @@ body {
     color: #f4a261 !important;
 }
 
+/* Soulignement orange sous la page en cours */
 .custom-navbar .nav-link.active-link {
     border-bottom: 4px solid #ff6b00;
 }
 
-/* ===== Zone titre ===== */
+
+/* =====================================================================
+   3. PAGE ACCUEIL
+   ===================================================================== */
+
+/* ----- Titre principal ----- */
 .titre-principal {
     font-size: clamp(3rem, 7vw, 5.5rem); /* s'adapte à la largeur de l'écran */
     font-weight: 800;
@@ -55,7 +87,7 @@ body {
     letter-spacing: -2px; /* lettres resserrées, comme dans Canva */
 }
 
-/* ===== Pilules orange + enfant ===== */
+/* ----- Pilules orange + enfant ----- */
 .hero-visuel {
     position: relative;
     padding-top: 20px;
@@ -68,6 +100,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Enfant centré au-dessus des pilules */
 .fille {
     position: absolute;
     top: -30px;
@@ -77,7 +110,7 @@ body {
     width: auto;
 }
 
-/* ===== Bulle festival ===== */
+/* ----- Bulle festival ----- */
 .encart {
     background-color: #fbf8d5;
     padding: 20px 25px;
@@ -98,7 +131,12 @@ body {
     margin-bottom: 0;
 }
 
-/* ===== Page Activités ===== */
+
+/* =====================================================================
+   4. PAGE ACTIVITÉS
+   ===================================================================== */
+
+/* Titre de page (réutilisable sur d'autres pages) */
 .titre-page {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 800;
@@ -106,6 +144,7 @@ body {
     margin-bottom: 25px;
 }
 
+/* Carte d'une activité */
 .carte-activite {
     background-color: #fbf3ea; /* crème */
     border-radius: 20px;
@@ -138,6 +177,7 @@ body {
     font-weight: 700;
 }
 
+/* Bouton S'inscrire */
 .btn-inscrire {
     background-color: #024073;
     color: white;
@@ -151,12 +191,252 @@ body {
     color: white;
 }
 
-/* ===== Mobile / Tablette (toujours en dernier) ===== */
+
+/* =====================================================================
+   5. PAGE INSCRIPTION
+   ===================================================================== */
+
+/* Titres "Enfant" et "Responsable" */
+.titre-formulaire {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+/* Champs de saisie */
+.champ {
+    background-color: #fafcfb;
+    border: none;
+    border-radius: 0;
+}
+
+.champ:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 64, 115, 0.35); /* halo bleu quand on clique dedans */
+}
+
+/* Bouton Envoyer (vert) */
+.btn-envoyer {
+    background-color: #00c060;
+    color: white;
+    font-weight: 700;
+    border-radius: 0;
+    padding: 8px 40px;
+}
+
+.btn-envoyer:hover {
+    background-color: #ff6b00;
+    color: white;
+}
+
+/* ===== Présentation de l'OMS ===== */
+.presentation-OMS {
+        padding: 20px 30px 10px;
+        border-radius: 10px;
+        margin: 20px 0 0;
+        max-width: 780px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+.presentation-text {
+        font-size: 1rem;
+        font-family: Arial, sans-serif;
+        vertical-align: text-top;
+        color: #000000;
+        line-height: 1.5;
+        text-align: justify;
+        margin: 0;
+        max-width: 100%;
+    }
+
+
+    
+/* =====================================================================
+   6. PAGE PHOTO
+   ===================================================================== */
+
+/* ----- Sélecteur de date ----- */
+.badge-date-container {
+    background-color: #024073;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.date-select {
+    background-color: #024073;
+    color: white;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 2px 24px 2px 8px;
+}
+
+.date-select:focus {
+    background-color: #024073;
+    color: white;
+    box-shadow: none;
+}
+
+/* ----- Cartes de catégories ----- */
+.category-card {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+}
+
+.category-badge {
+    background-color: #024073;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 8px 24px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Léger zoom de l'image au survol */
+.category-card:hover .img-wrapper img {
+    transform: scale(1.03);
+}
+
+/* Bouton "Voir plus" superposé à l'image */
+.btn-voir-plus {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background-color: #024073;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+/* ----- Photos de la galerie ----- */
+.gallery-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+
+/* =====================================================================
+   7. PAGE CONTACT
+   ===================================================================== */
+
+/* ----- Bouton bleu "Nous envoyer un message" ----- */
+.btn-message-custom {
+    background-color: #3b62ff;
+    border: none;
+    border-radius: 18px;
+    padding: 16px 32px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    transition: background-color 0.2s ease;
+}
+
+.btn-message-custom:hover {
+    background-color: #2747d9;
+}
+
+/* ----- Icônes réseaux sociaux ----- */
+.social-icon {
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.icon-facebook {
+    color: #1877f2;
+}
+
+.icon-instagram {
+    color: #e4405f;
+}
+
+/* ----- Champs du formulaire de contact ----- */
+.form-label-custom {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #111;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.form-input-custom {
+    background-color: #f7f7f7;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-input-custom:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 64, 115, 0.25);
+}
+
+/* ----- Bouton vert "Envoyer" (page Contact) ----- */
+.btn-envoyer-custom {
+    background-color: #00c853;
+    color: white;
+    font-weight: 800;
+    font-size: 1.25rem;
+    padding: 10px 48px;
+    border-radius: 6px;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-envoyer-custom:hover {
+    background-color: #00a843;
+    color: white;
+}
+
+
+/* =====================================================================
+   8. MOBILE / TABLETTE (toujours en dernier pour écraser les règles
+      de base ci-dessus)
+   ===================================================================== */
 @media (max-width: 991px) {
+
+    /* Logo plus petit */
     .navbar-logo {
         height: 80px;
     }
 
+    /* Menu déplié : centré */
     .custom-navbar .navbar-nav {
         text-align: center;
         padding-top: 15px;
@@ -170,7 +450,7 @@ body {
         display: inline-block;
     }
 
-    /* La fille repasse dans le flux normal pour ne pas déborder */
+    /* Accueil : l'enfant repasse dans le flux normal pour ne pas déborder */
     .fille {
         position: static;
         transform: none;

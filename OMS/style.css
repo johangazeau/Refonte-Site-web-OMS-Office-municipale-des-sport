@@ -123,6 +123,8 @@ body {
 
 /* ===== Mobile / Tablette ===== */
 @media (max-width: 991px) {
+
+    /* Logo plus petit */
     .navbar-logo {
         height: 80px;
     }

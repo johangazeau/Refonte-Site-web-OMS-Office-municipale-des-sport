@@ -1,27 +1,52 @@
-/* ===== Police et fond de la page ===== */
+/* =====================================================================
+   STYLE.CSS - Site Office Municipal des Sports (OMS)
+
+   SOMMAIRE
+   1. Base (police, fond de page)
+   2. Navigation (commune à toutes les pages)
+   3. Page Accueil (titre, pilules + enfant, bulle festival)
+   4. Page Activités (cartes d'activités)
+   5. Page Inscription (formulaire enfant / responsable)
+   6. Page Photo (sélecteur de date, catégories, galerie)
+   7. Page Contact (bouton message, réseaux sociaux, formulaire)
+   8. Mobile / Tablette (TOUJOURS EN DERNIER)
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. BASE : police et fond de la page
+   ===================================================================== */
 body {
     font-family: 'Bricolage Grotesque', Arial, sans-serif;
     background-color: #f0f0f0;
     color: #111;
 }
 
-/* ===== Navigation ===== */
+
+/* =====================================================================
+   2. NAVIGATION (toutes les pages)
+   ===================================================================== */
+
+/* Repère de positionnement pour centrer le menu */
 .custom-navbar .container-fluid {
     position: relative;
 }
 
+/* Bandeau bleu */
 .custom-navbar {
     background-color: #024073; /* Bleu OMS */
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
+/* Logo */
 .navbar-logo {
     height: 110px;
     width: auto;
     display: block;
 }
 
+/* Menu centré sur la page (grand écran uniquement) */
 @media (min-width: 992px) {
     .custom-navbar .navbar-collapse {
         position: absolute;
@@ -30,6 +55,7 @@ body {
     }
 }
 
+/* Liens du menu */
 .custom-navbar .nav-link {
     color: #ffffff !important;
     font-weight: 600;
@@ -39,23 +65,29 @@ body {
     padding-bottom: 6px;
 }
 
-    .custom-navbar .nav-link:hover {
-        color: #f4a261 !important;
-    }
-
-    .custom-navbar .nav-link.active-link {
-        border-bottom: 4px solid #ff6b00;
-    }
-
-/* ===== Zone titre ===== */
-.titre-principal {
-    font-size: clamp(3rem, 7vw, 5.5rem); /* s'adapte � la largeur de l'�cran */
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -2px; /* lettres l�g�rement resserr�es, comme dans Canva */
+.custom-navbar .nav-link:hover {
+    color: #f4a261 !important;
 }
 
-/* ===== Pilules orange + enfant ===== */
+/* Soulignement orange sous la page en cours */
+.custom-navbar .nav-link.active-link {
+    border-bottom: 4px solid #ff6b00;
+}
+
+
+/* =====================================================================
+   3. PAGE ACCUEIL
+   ===================================================================== */
+
+/* ----- Titre principal ----- */
+.titre-principal {
+    font-size: clamp(3rem, 7vw, 5.5rem); /* s'adapte à la largeur de l'écran */
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px; /* lettres resserrées, comme dans Canva */
+}
+
+/* ----- Pilules orange + enfant ----- */
 .hero-visuel {
     position: relative;
     padding-top: 20px;
@@ -68,15 +100,17 @@ body {
     margin-bottom: 20px;
 }
 
+/* Enfant centré au-dessus des pilules */
 .fille {
     position: absolute;
     top: -30px;
-    right: 5%;
+    left: 50%;
+    transform: translateX(-50%);
     height: 115%;
     width: auto;
 }
 
-/* ===== Bulle festival ===== */
+/* ----- Bulle festival ----- */
 .encart {
     background-color: #fbf8d5;
     padding: 20px 25px;
@@ -84,18 +118,122 @@ body {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-    .encart h2 {
-        font-size: 1.15rem;
-        font-weight: 800;
-        text-align: center; /* titre centr� comme sur le prototype */
-        margin-bottom: 12px;
-    }
+.encart h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 12px;
+}
 
-    .encart p {
-        font-size: 0.9rem;
-        text-align: justify; /* texte justifi� comme sur le prototype */
-        margin-bottom: 0;
-    }
+.encart p {
+    font-size: 0.9rem;
+    text-align: justify;
+    margin-bottom: 0;
+}
+
+
+/* =====================================================================
+   4. PAGE ACTIVITÉS
+   ===================================================================== */
+
+/* Titre de page (réutilisable sur d'autres pages) */
+.titre-page {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 25px;
+}
+
+/* Carte d'une activité */
+.carte-activite {
+    background-color: #fbf3ea; /* crème */
+    border-radius: 20px;
+    padding: 20px 25px;
+    margin-bottom: 20px; /* espace entre deux cartes */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carte-activite h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.carte-activite p {
+    font-size: 0.95rem;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+/* Ligne du bas : prix / bouton / date */
+.carte-bas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prix,
+.date {
+    font-weight: 700;
+}
+
+/* Bouton S'inscrire */
+.btn-inscrire {
+    background-color: #024073;
+    color: white;
+    border-radius: 6px;
+    padding: 4px 18px;
+    font-weight: 600;
+}
+
+.btn-inscrire:hover {
+    background-color: #ff6b00;
+    color: white;
+}
+
+
+/* =====================================================================
+   5. PAGE INSCRIPTION
+   ===================================================================== */
+
+/* Titres "Enfant" et "Responsable" */
+.titre-formulaire {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+/* Champs de saisie */
+.champ {
+    background-color: #fafcfb;
+    border: none;
+    border-radius: 0;
+}
+
+.champ:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 64, 115, 0.35); /* halo bleu quand on clique dedans */
+}
+
+/* Bouton Envoyer (vert) */
+.btn-envoyer {
+    background-color: #00c060;
+    color: white;
+    font-weight: 700;
+    border-radius: 0;
+    padding: 8px 40px;
+}
+
+.btn-envoyer:hover {
+    background-color: #ff6b00;
+    color: white;
+}
 
 /* ===== Présentation de l'OMS ===== */
 .presentation-OMS {
@@ -119,9 +257,178 @@ body {
     }
 
 
+    
+/* =====================================================================
+   6. PAGE PHOTO
+   ===================================================================== */
+
+/* ----- Sélecteur de date ----- */
+.badge-date-container {
+    background-color: #024073;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.date-select {
+    background-color: #024073;
+    color: white;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 2px 24px 2px 8px;
+}
+
+.date-select:focus {
+    background-color: #024073;
+    color: white;
+    box-shadow: none;
+}
+
+/* ----- Cartes de catégories ----- */
+.category-card {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+}
+
+.category-badge {
+    background-color: #024073;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 8px 24px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Léger zoom de l'image au survol */
+.category-card:hover .img-wrapper img {
+    transform: scale(1.03);
+}
+
+/* Bouton "Voir plus" superposé à l'image */
+.btn-voir-plus {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background-color: #024073;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+/* ----- Photos de la galerie ----- */
+.gallery-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
 
 
-/* ===== Mobile / Tablette ===== */
+/* =====================================================================
+   7. PAGE CONTACT
+   ===================================================================== */
+
+/* ----- Bouton bleu "Nous envoyer un message" ----- */
+.btn-message-custom {
+    background-color: #3b62ff;
+    border: none;
+    border-radius: 18px;
+    padding: 16px 32px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    transition: background-color 0.2s ease;
+}
+
+.btn-message-custom:hover {
+    background-color: #2747d9;
+}
+
+/* ----- Icônes réseaux sociaux ----- */
+.social-icon {
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.icon-facebook {
+    color: #1877f2;
+}
+
+.icon-instagram {
+    color: #e4405f;
+}
+
+/* ----- Champs du formulaire de contact ----- */
+.form-label-custom {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #111;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.form-input-custom {
+    background-color: #f7f7f7;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-input-custom:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 64, 115, 0.25);
+}
+
+/* ----- Bouton vert "Envoyer" (page Contact) ----- */
+.btn-envoyer-custom {
+    background-color: #00c853;
+    color: white;
+    font-weight: 800;
+    font-size: 1.25rem;
+    padding: 10px 48px;
+    border-radius: 6px;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-envoyer-custom:hover {
+    background-color: #00a843;
+    color: white;
+}
+
+
+/* =====================================================================
+   8. MOBILE / TABLETTE (toujours en dernier pour écraser les règles
+      de base ci-dessus)
+   ===================================================================== */
 @media (max-width: 991px) {
 
     /* Logo plus petit */
@@ -129,6 +436,7 @@ body {
         height: 80px;
     }
 
+    /* Menu déplié : centré */
     .custom-navbar .navbar-nav {
         text-align: center;
         padding-top: 15px;
@@ -138,19 +446,16 @@ body {
         margin: 10px 0;
     }
 
-        .custom-navbar .nav-link.active-link {
-            display: inline-block;
-        }
-    
-
-    /* La fille repasse dans le flux normal pour ne pas d�border */
-    .fille {
-        position: absolute;
-        top: -30px;
-        left: 50%; /* le bord gauche de l'image se place au milieu */
-        transform: translateX(-50%); /* on d�cale l'image de la moiti� de sa propre largeur */
-        height: 115%;
-        width: auto;
+    .custom-navbar .nav-link.active-link {
+        display: inline-block;
     }
 
+    /* Accueil : l'enfant repasse dans le flux normal pour ne pas déborder */
+    .fille {
+        position: static;
+        transform: none;
+        display: block;
+        margin: 20px auto 0;
+        height: 300px;
+    }
 }

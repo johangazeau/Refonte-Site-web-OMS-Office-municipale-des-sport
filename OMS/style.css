@@ -1,23 +1,27 @@
-/* Container de la navbar en position relative pour servir de repère */
+/* ===== Police et fond de la page ===== */
+body {
+    font-family: 'Bricolage Grotesque', Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #111;
+}
+
+/* ===== Navigation ===== */
 .custom-navbar .container-fluid {
     position: relative;
 }
 
-/* Couleur de fond du bandeau et épaisseur */
 .custom-navbar {
     background-color: #024073; /* Bleu OMS */
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
-/* Taille du logo */
 .navbar-logo {
     height: 110px;
     width: auto;
     display: block;
 }
 
-/* Centrage absolu du menu sur grand écran */
 @media (min-width: 992px) {
     .custom-navbar .navbar-collapse {
         position: absolute;
@@ -26,7 +30,6 @@
     }
 }
 
-/* Style des liens de navigation */
 .custom-navbar .nav-link {
     color: #ffffff !important;
     font-weight: 600;
@@ -36,32 +39,90 @@
     padding-bottom: 6px;
 }
 
-/* Effet au survol */
-.custom-navbar .nav-link:hover {
-    color: #f4a261 !important;
+    .custom-navbar .nav-link:hover {
+        color: #f4a261 !important;
+    }
+
+    .custom-navbar .nav-link.active-link {
+        border-bottom: 4px solid #ff6b00;
+    }
+
+/* ===== Zone titre ===== */
+.titre-principal {
+    font-size: clamp(3rem, 7vw, 5.5rem); /* s'adapte � la largeur de l'�cran */
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px; /* lettres l�g�rement resserr�es, comme dans Canva */
 }
 
-/* Ligne orange sous le lien actif */
-.custom-navbar .nav-link.active-link {
-    border-bottom: 4px solid #ff6b00;
+/* ===== Pilules orange + enfant ===== */
+.hero-visuel {
+    position: relative;
+    padding-top: 20px;
 }
 
-/* Adaptabilité Mobile / Tablette */
+.pilule {
+    height: 100px;
+    border-radius: 50px;
+    background: linear-gradient(to right, #b34700, #ff8a00);
+    margin-bottom: 20px;
+}
+
+.fille {
+    position: absolute;
+    top: -30px;
+    right: 5%;
+    height: 115%;
+    width: auto;
+}
+
+/* ===== Bulle festival ===== */
+.encart {
+    background-color: #fbf8d5;
+    padding: 20px 25px;
+    border-radius: 25px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+    .encart h2 {
+        font-size: 1.15rem;
+        font-weight: 800;
+        text-align: center; /* titre centr� comme sur le prototype */
+        margin-bottom: 12px;
+    }
+
+    .encart p {
+        font-size: 0.9rem;
+        text-align: justify; /* texte justifi� comme sur le prototype */
+        margin-bottom: 0;
+    }
+
+/* ===== Mobile / Tablette ===== */
 @media (max-width: 991px) {
     .navbar-logo {
         height: 80px;
     }
-    
+
     .custom-navbar .navbar-nav {
         text-align: center;
         padding-top: 15px;
     }
-    
+
     .custom-navbar .nav-link {
         margin: 10px 0;
     }
 
-    .custom-navbar .nav-link.active-link {
-        display: inline-block;
+        .custom-navbar .nav-link.active-link {
+            display: inline-block;
+        }
+
+    /* La fille repasse dans le flux normal pour ne pas d�border */
+    .fille {
+        position: absolute;
+        top: -30px;
+        left: 50%; /* le bord gauche de l'image se place au milieu */
+        transform: translateX(-50%); /* on d�cale l'image de la moiti� de sa propre largeur */
+        height: 115%;
+        width: auto;
     }
 }

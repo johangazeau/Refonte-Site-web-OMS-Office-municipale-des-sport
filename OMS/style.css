@@ -97,6 +97,30 @@ body {
         margin-bottom: 0;
     }
 
+/* ===== Présentation de l'OMS ===== */
+.presentation-OMS {
+        padding: 20px 30px 10px;
+        border-radius: 10px;
+        margin: 20px 0 0;
+        max-width: 780px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+.presentation-text {
+        font-size: 1rem;
+        font-family: Arial, sans-serif;
+        vertical-align: text-top;
+        color: #000000;
+        line-height: 1.5;
+        text-align: justify;
+        margin: 0;
+        max-width: 100%;
+    }
+
+
+
+
 /* ===== Mobile / Tablette ===== */
 @media (max-width: 991px) {
     .navbar-logo {
@@ -115,6 +139,7 @@ body {
         .custom-navbar .nav-link.active-link {
             display: inline-block;
         }
+    
 
     /* La fille repasse dans le flux normal pour ne pas d�border */
     .fille {
@@ -125,4 +150,5 @@ body {
         height: 115%;
         width: auto;
     }
+
 }

@@ -30,19 +30,19 @@
 			<div class="collapse navbar-collapse" id="navbarContent">
 				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active-link" href="Activité.html">Accueil</a>
+						<a class="nav-link active-link" href="activites.php">Accueil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="photo.html">Photo</a>
+						<a class="nav-link" href="photo.php">Photo</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="Presentation.html">Présentation</a>
+						<a class="nav-link" href="presentation.php">Présentation</a>
 					</li>
 					<li class="nav-item">
-						<a href="Activité.html" class="nav-link" href="Activité.html">Activités</a>
+						<a href="activites.php" class="nav-link" href="activites.php">Activités</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact.html">Contact</a>
+						<a class="nav-link" href="contact.php">Contact</a>
 					</li>
 				</ul>
 			</div>

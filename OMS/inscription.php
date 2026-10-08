@@ -14,7 +14,7 @@
 		<div class="container-fluid px-4">
 
 			<!-- Logo OMS à gauche -->
-			<a class="navbar-brand" href="index.html">
+			<a class="navbar-brand" href="index.php">
 				<img src="img/logo.jpg" alt="Logo OMS" class="navbar-logo">
 			</a>
 
@@ -27,19 +27,19 @@
 			<div class="collapse navbar-collapse" id="navbarContent">
 				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a href="index.html" class="nav-link" href="#">Accueil</a>
+						<a href="index.php" class="nav-link" href="#">Accueil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="photo.html">Photo</a>
+						<a class="nav-link" href="photo.php">Photo</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="Presentation.html">Présentation</a>
+						<a class="nav-link" href="presentation.php">Présentation</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active-link" href="Activité.html">Activités</a>
+						<a class="nav-link active-link" href="activites.php">Activités</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact.html">Contact</a>
+						<a class="nav-link" href="contact.php">Contact</a>
 					</li>
 				</ul>
 			</div>

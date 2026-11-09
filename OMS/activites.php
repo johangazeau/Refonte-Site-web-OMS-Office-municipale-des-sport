@@ -1,3 +1,7 @@
+<?php include __DIR__ . '/includes/activite.inc.php'; ?>
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,101 +15,15 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php
+$sql = "SELECT * FROM 'activites'.*,activites.description,DATE_FORMAT(activites.date_fin_inscription, '%d/%m/%Y') AS 'date',DATE_FORMAT(activites.hdebut,'%H:%i') AS Heure,activites.hfin,activites.nb_place,activites.nb_inscription,activites.age_min,activites.age_max,activites.age_recommander,activites.titre,activites.date";
+$stmt = $pdo->query($sql);
 
-	<!-- Bandeau de navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-		<div class="container-fluid px-4">
 
-			<!-- Logo OMS à gauche -->
-			<a class="navbar-brand" href="index.php">
-				<img src="img/logo.jpg" alt="Logo OMS" class="navbar-logo">
-			</a>
 
-			<!-- Bouton Hamburger (Mobile) -->
-			<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
 
-			<!-- Liens de navigation centrés sur la page -->
-			<div class="collapse navbar-collapse" id="navbarContent">
-				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a href="index.php" class="nav-link" href="index.php">Accueil</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="photo.php">Photo</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="presentation.php">Présentation</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active-link" href="activites.php">Activités</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="contact.php">Contact</a>
-					</li>
-				</ul>
-			</div>
+?> 
 
-		</div>
-	</nav>
 
-	<main>
-	<section class="container py-4">
-
-		<h1 class="titre-page">Nos activités/stage</h1>
-
-		<!-- Carte 1 -->
-		<article class="carte-activite">
-			<h2>Initiation au kayak</h2>
-			<p>
-				Naviguez à votre rythme et découvrez les plaisirs du kayak en toute
-				sécurité. Cette activité d'initiation est idéale pour se dépenser au
-				grand air tout en développant son équilibre et son autonomie sur l'eau.
-			</p>
-			<div class="carte-bas">
-				<span class="prix">52€</span>
-				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
-				<span class="date">04/07/2026</span>
-			</div>
-		</article>
-
-		<!-- Carte 2 -->
-		<article class="carte-activite">
-			<h2>Découverte du Camping &amp; Vie en Plein Air</h2>
-			<p>
-				Apprenez les fondamentaux du camping pour réussir vos futures escapades
-				en nature. Cet atelier pratique et convivial permet de se familiariser
-				avec le matériel et les bons réflexes pour vivre une aventure sous la
-				toile en toute sécurité.
-			</p>
-			<div class="carte-bas">
-				<span class="prix">34€</span>
-				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
-				<span class="date">12/07/2026</span>
-			</div>
-		</article>
-
-		<!-- Carte 3 -->
-		<article class="carte-activite">
-			<h2>Acrobranche</h2>
-			<p>
-				Prenez de la hauteur et faites le plein de sensations en toute sécurité.
-				Cette activité d'initiation permet de dépasser ses appréhensions, de
-				travailler son agilité et de découvrir la forêt sous un nouvel angle,
-				de branche en branche.
-			</p>
-			<div class="carte-bas">
-				<span class="prix">40€</span>
-				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
-				<span class="date">19/07/2026</span>
-			</div>
-		</article>
-
-	</section>
-</main>
-
-	<!-- JS Bootstrap (Obligatoire pour l'ouverture du menu mobile) -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

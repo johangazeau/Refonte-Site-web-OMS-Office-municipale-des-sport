@@ -426,7 +426,84 @@ body {
 
 
 /* =====================================================================
-   8. MOBILE / TABLETTE (toujours en dernier pour écraser les règles
+   8. BOUTON CONNEXION + POPUP (modal)
+   ===================================================================== */
+
+/* Bouton dans la navbar */
+.btn-connexion {
+    background-color: #ff6b00;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-connexion:hover {
+    background-color: #e05e00;
+    color: white;
+}
+
+/* Fond de la popup */
+.login-modal-content {
+    background-color: #024073;
+    border: none;
+    border-radius: 16px;
+}
+
+/* En-tête de la popup */
+.login-modal-header {
+    padding: 20px 24px 0;
+}
+
+.login-modal-header .modal-title {
+    color: white;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+/* Champs de saisie */
+.login-input {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    padding: 10px 14px;
+}
+
+.login-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.login-input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #ff6b00;
+    color: white;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.3);
+}
+
+/* Bouton Se connecter */
+.btn-login-submit {
+    background-color: #ff6b00;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 40px;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-login-submit:hover {
+    background-color: #e05e00;
+    color: white;
+}
+
+
+/* =====================================================================
+   9. MOBILE / TABLETTE (toujours en dernier pour écraser les règles
       de base ci-dessus)
    ===================================================================== */
 @media (max-width: 991px) {

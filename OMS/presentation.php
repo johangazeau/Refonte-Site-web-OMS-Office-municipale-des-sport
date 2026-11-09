@@ -10,13 +10,12 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 	<!-- Bandeau de navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
 		<div class="container-fluid px-4">
 
 			<!-- Logo OMS à gauche -->
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="index.php">
 				<img src="img/logo.jpg" alt="Logo OMS" class="navbar-logo">
 			</a>
 
@@ -29,25 +28,37 @@
 			<div class="collapse navbar-collapse" id="navbarContent">
 				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active-link" href="#">Accueil</a>
+						<a class="nav-link" href="index.php">Accueil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Photo</a>
+						<a class="nav-link" href="photo.php">Photo</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Présentation</a>
+						<a class="nav-link active-link" href="presentation.php">Présentation</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Activités</a>
+						<a class="nav-link" href="activites.php">Activités</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Contact</a>
+						<a class="nav-link" href="contact.php">Contact</a>
 					</li>
 				</ul>
 			</div>
 
 		</div>
 	</nav>
+
+	<!-- présentation de l'OMS -->
+	<div class="presentation-OMS">
+		<p class="presentation-text">L'Office Municipal des Sports (OMS) 
+			est une organisation dédiée à la promotion et au développement des activités sportives 
+			au sein de notre communauté. Notre mission est de favoriser l'accès au sport pour tous, 
+			en offrant des programmes variés et adaptés à chaque âge et niveau de compétence. 
+			Nous collaborons avec des clubs locaux, des écoles et d'autres partenaires pour créer un environnement 
+			sportif inclusif et stimulant. Rejoignez-nous pour découvrir les nombreuses opportunités que nous offrons et 
+			participez à la vie sportive de notre ville !
+		</p>
+	</div>
 
 	<!-- JS Bootstrap (Obligatoire pour l'ouverture du menu mobile) -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

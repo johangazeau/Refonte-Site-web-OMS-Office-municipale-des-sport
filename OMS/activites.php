@@ -17,7 +17,7 @@
 		<div class="container-fluid px-4">
 
 			<!-- Logo OMS à gauche -->
-			<a class="navbar-brand" href="index.html">
+			<a class="navbar-brand" href="index.php">
 				<img src="img/logo.jpg" alt="Logo OMS" class="navbar-logo">
 			</a>
 
@@ -30,19 +30,19 @@
 			<div class="collapse navbar-collapse" id="navbarContent">
 				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a href="index.html" class="nav-link" href="index.html">Accueil</a>
+						<a href="index.php" class="nav-link" href="index.php">Accueil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="photo.html">Photo</a>
+						<a class="nav-link" href="photo.php">Photo</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="Presentation.html">Présentation</a>
+						<a class="nav-link" href="presentation.php">Présentation</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active-link" href="Activité.html">Activités</a>
+						<a class="nav-link active-link" href="activites.php">Activités</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact.html">Contact</a>
+						<a class="nav-link" href="contact.php">Contact</a>
 					</li>
 				</ul>
 			</div>
@@ -65,7 +65,7 @@
 			</p>
 			<div class="carte-bas">
 				<span class="prix">52€</span>
-				<a href="inscription.html" class="btn btn-sm btn-inscrire">S'inscrire</a>
+				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
 				<span class="date">04/07/2026</span>
 			</div>
 		</article>
@@ -81,7 +81,7 @@
 			</p>
 			<div class="carte-bas">
 				<span class="prix">34€</span>
-				<a href="inscription.html" class="btn btn-sm btn-inscrire">S'inscrire</a>
+				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
 				<span class="date">12/07/2026</span>
 			</div>
 		</article>
@@ -97,7 +97,7 @@
 			</p>
 			<div class="carte-bas">
 				<span class="prix">40€</span>
-				<a href="inscription.html" class="btn btn-sm btn-inscrire">S'inscrire</a>
+				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
 				<span class="date">19/07/2026</span>
 			</div>
 		</article>

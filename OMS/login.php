@@ -4,8 +4,8 @@
  * Redirige vers la page d'origine avec un message d'erreur ou de succès.
  */
 
-require_once 'includes/db.php';
-require_once 'includes/auth.php';
+require_once __DIR__ . '/includes/activite.inc.php';
+require_once __DIR__ . '/includes/auth.php';
 
 // Uniquement en POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -24,9 +24,9 @@ if ($email === '' || $mdp === '') {
 }
 
 // Chercher l'utilisateur en BDD par email
-$stmt = db()->prepare('SELECT * FROM omsuser WHERE email = :email LIMIT 1');
+$stmt = $pdo->prepare('SELECT * FROM omsuser WHERE email = :email LIMIT 1');
 $stmt->execute(['email' => $email]);
-$user = $stmt->fetch();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 /*
  * IMPORTANT — Sécurité du mot de passe

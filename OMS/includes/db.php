@@ -3,9 +3,9 @@ function db(): PDO
 {
     static $pdo = null;
     if ($pdo === null) {
-        $host = getenv('DB_HOST') ?: 'mariadb';
-        $name = getenv('DB_NAME') ?: 'OMS';
-        $user = getenv('DB_USER') ?: 'OMSdb';
+        $host = getenv('DB_HOST') ?: '127.0.0.1';
+        $name = getenv('DB_NAME') ?: 'oms';
+        $user = getenv('DB_USER') ?: 'root';
         $pass = getenv('DB_PASS') ?: '';
 
         $pdo = new PDO("mysql:host=$host;port=3306;dbname=$name;charset=utf8mb4", $user, $pass, [

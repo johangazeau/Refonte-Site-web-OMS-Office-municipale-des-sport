@@ -7,11 +7,22 @@
  *         include 'includes/header.php'; ?>
  *
  * La variable $titre_page permet de personnaliser le <title> (optionnel).
+ *
+ * Variables exposées après inclusion :
+ *   $est_connecte (bool)  — utilisateur connecté ?
+ *   $est_admin    (bool)  — utilisateur admin ? (permission = 2)
+ *   $utilisateur  (array) — infos user connecté (ou null)
  */
+
+// Authentification et session (expose $est_connecte, $est_admin, $utilisateur)
+require_once __DIR__ . '/auth.php';
 
 // Valeurs par défaut
 if (!isset($page_active))  $page_active  = '';
 if (!isset($titre_page))   $titre_page   = 'OMS';
+
+// Page courante (pour rediriger après login)
+$_page_courante = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -64,15 +75,40 @@ if (!isset($titre_page))   $titre_page   = 'OMS';
 					</li>
 				</ul>
 
-				<!-- Bouton Connexion (à droite) -->
-				<button class="btn btn-connexion ms-lg-3" data-bs-toggle="modal" data-bs-target="#loginModal">
-					<i class="fas fa-user"></i> Connexion
-				</button>
+				<?php if ($est_connecte): ?>
+					<!-- Utilisateur connecté : afficher nom + déconnexion -->
+					<div class="d-flex align-items-center ms-lg-3 gap-2">
+						<span class="text-white fw-bold">
+							<i class="fas fa-user"></i>
+							<?= htmlspecialchars($utilisateur['prenom']) ?>
+							<?php if ($est_admin): ?>
+								<span class="badge bg-warning text-dark ms-1">Admin</span>
+							<?php endif; ?>
+						</span>
+						<a href="logout.php" class="btn btn-deconnexion">Déconnexion</a>
+					</div>
+				<?php else: ?>
+					<!-- Visiteur : bouton connexion -->
+					<button class="btn btn-connexion ms-lg-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+						<i class="fas fa-user"></i> Connexion
+					</button>
+				<?php endif; ?>
 			</div>
 
 		</div>
 	</nav>
 
+	<?php
+	// Afficher l'erreur de connexion s'il y en a une
+	if (!empty($_SESSION['login_erreur'])): ?>
+		<div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+			<?= htmlspecialchars($_SESSION['login_erreur']) ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+		</div>
+		<?php unset($_SESSION['login_erreur']); ?>
+	<?php endif; ?>
+
+	<?php if (!$est_connecte): ?>
 	<!-- Modal de connexion -->
 	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
@@ -84,17 +120,20 @@ if (!isset($titre_page))   $titre_page   = 'OMS';
 				</div>
 
 				<div class="modal-body px-4 pb-4">
-					<form>
+					<form action="login.php" method="POST">
+						<!-- Champ caché pour revenir sur la bonne page après connexion -->
+						<input type="hidden" name="redirect" value="<?= htmlspecialchars($_page_courante) ?>">
+
 						<div class="mb-3">
-							<label for="login-user" class="form-label text-white fw-bold">Identifiant</label>
-							<input type="text" class="form-control login-input" id="login-user" placeholder="Votre identifiant">
+							<label for="login-email" class="form-label text-white fw-bold">Email</label>
+							<input type="email" class="form-control login-input" id="login-email" name="login_email" placeholder="Votre email" required>
 						</div>
 						<div class="mb-4">
 							<label for="login-password" class="form-label text-white fw-bold">Mot de passe</label>
-							<input type="password" class="form-control login-input" id="login-password" placeholder="Votre mot de passe">
+							<input type="password" class="form-control login-input" id="login-password" name="login_password" placeholder="Votre mot de passe" required>
 						</div>
 						<div class="text-center">
-							<button type="submit" class="btn btn-login-submit" onclick="event.preventDefault();">Se connecter</button>
+							<button type="submit" class="btn btn-login-submit">Se connecter</button>
 						</div>
 					</form>
 				</div>
@@ -102,3 +141,4 @@ if (!isset($titre_page))   $titre_page   = 'OMS';
 			</div>
 		</div>
 	</div>
+	<?php endif; ?>

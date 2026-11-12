@@ -1,111 +1,38 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Navigation OMS</title>
-	<!-- CSS Bootstrap 5 -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<!-- Fichier CSS personnalisé -->
-	<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
+<?php include __DIR__ . '/includes/activite.inc.php'; ?>
+<?php
+$page_active = 'activites';
+$titre_page  = 'Nos activités - OMS';
+include __DIR__ . '/includes/header.php';
+?>
+    <?php
+    $sql = "
+        SELECT
+            activite_club.*,
+            DATE_FORMAT(activite_club.date_fin_inscription, '%d/%m/%Y') AS date_fin_inscription_formatee,
+            DATE_FORMAT(activite_club.hdebut, '%H:%i') AS heure_debut
+        FROM activite_club
+    ";
+    $stmt = $pdo->query($sql);
 
-	<!-- Bandeau de navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-		<div class="container-fluid px-4">
+    while ($activite = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    ?>
+        <article class="carte-activite">
+            <h2><?php echo htmlspecialchars($activite['titre'] ?? '', ENT_QUOTES, 'UTF-8'); ?></h2>
+            <p><?php echo nl2br(htmlspecialchars($activite['description'] ?? '', ENT_QUOTES, 'UTF-8')); ?></p>
+            <p>Date de fin d'inscription : <?php echo htmlspecialchars($activite['date_fin_inscription_formatee'] ?? $activite['date_fin_inscription'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+            <div class="carte-bas">
+                <p>Heure : <?php echo htmlspecialchars($activite['heure_debut'] ?? $activite['hdebut'] ?? '', ENT_QUOTES, 'UTF-8'); ?> - <?php echo htmlspecialchars($activite['hfin'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                <p>Nombre de places : <?php echo htmlspecialchars($activite['nb_place'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                <p>Nombre d'inscriptions : <?php echo htmlspecialchars($activite['nb_inscription'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                <p>Âge minimum : <?php echo htmlspecialchars($activite['age_min'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                <p>Âge maximum : <?php echo htmlspecialchars($activite['age_max'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                <p>Âge recommandé : <?php echo htmlspecialchars($activite['age_recommander'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+            </div>
+        </article>
+    <?php
+    }
+    ?>
 
-			<!-- Logo OMS à gauche -->
-			<a class="navbar-brand" href="index.php">
-				<img src="img/logo.jpg" alt="Logo OMS" class="navbar-logo">
-			</a>
-
-			<!-- Bouton Hamburger (Mobile) -->
-			<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<!-- Liens de navigation centrés sur la page -->
-			<div class="collapse navbar-collapse" id="navbarContent">
-				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a href="index.php" class="nav-link" href="index.php">Accueil</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="photo.php">Photo</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="presentation.php">Présentation</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active-link" href="activites.php">Activités</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="contact.php">Contact</a>
-					</li>
-				</ul>
-			</div>
-
-		</div>
-	</nav>
-
-	<main>
-	<section class="container py-4">
-
-		<h1 class="titre-page">Nos activités/stage</h1>
-
-		<!-- Carte 1 -->
-		<article class="carte-activite">
-			<h2>Initiation au kayak</h2>
-			<p>
-				Naviguez à votre rythme et découvrez les plaisirs du kayak en toute
-				sécurité. Cette activité d'initiation est idéale pour se dépenser au
-				grand air tout en développant son équilibre et son autonomie sur l'eau.
-			</p>
-			<div class="carte-bas">
-				<span class="prix">52€</span>
-				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
-				<span class="date">04/07/2026</span>
-			</div>
-		</article>
-
-		<!-- Carte 2 -->
-		<article class="carte-activite">
-			<h2>Découverte du Camping &amp; Vie en Plein Air</h2>
-			<p>
-				Apprenez les fondamentaux du camping pour réussir vos futures escapades
-				en nature. Cet atelier pratique et convivial permet de se familiariser
-				avec le matériel et les bons réflexes pour vivre une aventure sous la
-				toile en toute sécurité.
-			</p>
-			<div class="carte-bas">
-				<span class="prix">34€</span>
-				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
-				<span class="date">12/07/2026</span>
-			</div>
-		</article>
-
-		<!-- Carte 3 -->
-		<article class="carte-activite">
-			<h2>Acrobranche</h2>
-			<p>
-				Prenez de la hauteur et faites le plein de sensations en toute sécurité.
-				Cette activité d'initiation permet de dépasser ses appréhensions, de
-				travailler son agilité et de découvrir la forêt sous un nouvel angle,
-				de branche en branche.
-			</p>
-			<div class="carte-bas">
-				<span class="prix">40€</span>
-				<a href="inscription.php" class="btn btn-sm btn-inscrire">S'inscrire</a>
-				<span class="date">19/07/2026</span>
-			</div>
-		</article>
-
-	</section>
-</main>
-
-	<!-- JS Bootstrap (Obligatoire pour l'ouverture du menu mobile) -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

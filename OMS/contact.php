@@ -1,56 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - OMS</title>
-    <!-- CSS Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome pour les icônes réseaux sociaux -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-    <!-- Fichier CSS personnalisé -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- Bandeau de navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-        <div class="container-fluid px-4">
-
-            <!-- Logo OMS à gauche -->
-            <a class="navbar-brand" href="index.php">
-                <img src="img/logo.jpg" alt="Logo OMS" class="navbar-logo">
-            </a>
-
-            <!-- Bouton Hamburger (Mobile) -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Liens de navigation centrés -->
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="photo.php">Photo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="presentation.php">Présentation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="activites.php">Activités</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active-link" href="contact.php">contact</a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </nav>
+<?php
+$page_active = 'contact';
+$titre_page  = 'Contact - OMS';
+include 'includes/header.php';
+?>
 
     <!-- Contenu Principal -->
     <main class="container my-5">
@@ -80,13 +32,13 @@
                 <div class="col-md-7">
                     <h3 class="text-center text-md-start mb-3 fw-bold">Où nous trouver ?</h3>
                     <div class="map-container shadow-sm rounded overflow-hidden">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.153942006132!2d31.13130231511475!3d29.97923458190776!2m3!1f0!0!f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584587ac8f291b%3A0x810c2f3fa2a52424!2sPyramide%20de%20Kh%C3%A9ops!5e0!3m2!1sfr!2sfr!4v1650000000000!5m2!1sfr!2sfr" 
-                            width="100%" 
-                            height="380" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.153942006132!2d31.13130231511475!3d29.97923458190776!2m3!1f0!0!f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584587ac8f291b%3A0x810c2f3fa2a52424!2sPyramide%20de%20Kh%C3%A9ops!5e0!3m2!1sfr!2sfr!4v1650000000000!5m2!1sfr!2sfr"
+                            width="100%"
+                            height="380"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>

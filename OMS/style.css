@@ -762,3 +762,89 @@ body {
     background-color: #00a843;
     color: white;
 }
+
+/* =====================================================================
+   10. Lightbox (vue plein écran des photos)
+   ===================================================================== */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+.lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lightbox-overlay img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 8px 40px rgba(0,0,0,.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.4rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: .8;
+    transition: opacity .2s;
+}
+.lightbox-close:hover {
+    opacity: 1;
+}
+
+.lightbox-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+    padding: 8px 20px;
+    background: rgba(255,255,255,.1);
+    border-radius: 30px;
+    backdrop-filter: blur(6px);
+}
+
+.lightbox-titre {
+    color: #fff;
+    font-size: .95rem;
+    font-weight: 500;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lightbox-dl {
+    border-radius: 20px;
+    font-size: .85rem;
+    font-weight: 600;
+    padding: 4px 14px;
+    text-decoration: none;
+}
+.lightbox-dl:hover {
+    background-color: #e0e0e0;
+}
+
+.lightbox-trigger {
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.lightbox-trigger:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}

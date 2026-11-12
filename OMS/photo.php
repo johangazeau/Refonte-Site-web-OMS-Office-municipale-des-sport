@@ -157,8 +157,11 @@ if ($galerie_id > 0) {
                     <div class="col-md-4 col-lg-3">
                         <div class="gallery-card position-relative">
                             <img src="<?= htmlspecialchars($img['img_path']) ?>"
-                                 class="img-fluid rounded shadow-sm gallery-img"
-                                 alt="<?= htmlspecialchars($img['titre']) ?>">
+                                 class="img-fluid rounded shadow-sm gallery-img lightbox-trigger"
+                                 alt="<?= htmlspecialchars($img['titre']) ?>"
+                                 data-full="<?= htmlspecialchars($img['img_path']) ?>"
+                                 data-titre="<?= htmlspecialchars($img['titre']) ?>"
+                                 style="cursor:pointer">
 
                             <?php if ($est_admin): ?>
                                 <form action="photo_action.php" method="POST" class="btn-delete-photo"
@@ -210,7 +213,46 @@ if ($galerie_id > 0) {
 
     </main>
 
+    <!-- ═══ Modal popup pour voir une photo en grand ═══ -->
+    <div class="modal fade" id="photoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content" style="background:transparent; border:none; box-shadow:none;">
+                <div class="modal-header border-0 pb-0">
+                    <h6 class="modal-title text-white" id="photoModalTitre"></h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center p-2">
+                    <img id="photoModalImg" src="" alt="" class="img-fluid rounded" style="max-height:80vh; object-fit:contain;">
+                </div>
+                <div class="modal-footer border-0 justify-content-center pt-0">
+                    <a id="photoModalDl" href="" download class="btn btn-light btn-sm rounded-pill px-4">
+                        <i class="fas fa-download me-1"></i> Télécharger
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    // ── Popup photo ──
+    const photoModal    = new bootstrap.Modal(document.getElementById('photoModal'));
+    const modalImg      = document.getElementById('photoModalImg');
+    const modalTitre    = document.getElementById('photoModalTitre');
+    const modalDl       = document.getElementById('photoModalDl');
+
+    document.querySelectorAll('.lightbox-trigger').forEach(img => {
+        img.addEventListener('click', () => {
+            modalImg.src            = img.dataset.full;
+            modalImg.alt            = img.dataset.titre;
+            modalTitre.textContent  = img.dataset.titre;
+            modalDl.href            = img.dataset.full;
+            modalDl.download        = img.dataset.titre || 'image';
+            photoModal.show();
+        });
+    });
+    </script>
 </body>
 </html>

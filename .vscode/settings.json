@@ -15,5 +15,8 @@
             "username": "root",
             "askForPassword": true
         }
-    ]
+    ],
+    "phpserver.relativePath": "./OMS",
+    "phpserver.phpPath": "/opt/homebrew/bin/php",
+    "phpserver.port": 8000
 }

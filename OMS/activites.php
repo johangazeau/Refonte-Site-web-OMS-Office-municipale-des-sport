@@ -146,7 +146,7 @@ $e  = fn($v) => htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8');
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header login-modal-header border-0">
-                        <h5 class="modal-title text-white">Nouvelle activité</h5>
+                        <h5 class="modal-title text-white">Nouvelle non activité</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
             <div class="modal-body">

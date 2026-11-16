@@ -1,7 +1,7 @@
 <?php
 /**
  * Traite les actions admin sur les photos et galeries.
- * Actions possibles : add_galerie, add_images, delete_image
+ * Actions possibles : add_galerie, add_images, delete_image, delete_galerie
  */
 
 require_once 'includes/photo.inc.php';
@@ -34,7 +34,7 @@ if ($action === 'add_galerie') {
 
     $stmt = db()->prepare('
         INSERT INTO galerie (id, date, text, permission, activite_id_galerie, galerie_id, titre, id_Activite_Club)
-        VALUES (:id, :date, :texte, 1, 0, 0, :titre, 1)
+        VALUES (:id, :date, :texte, 1, 0, 0, :titre, NULL)
     ');
     $stmt->execute([
         'id'    => $maxId,
@@ -151,6 +151,73 @@ if ($action === 'delete_image') {
 
     $_SESSION['photo_ok'] = 'Photo supprimée.';
     header('Location: photo.php?galerie=' . $galerie_id);
+    exit;
+}
+
+// =====================================================================
+// 4. Supprimer une galerie et ses photos
+// =====================================================================
+if ($action === 'delete_galerie') {
+    $galerie_id = (int) ($_POST['galerie_id'] ?? 0);
+
+    if ($galerie_id <= 0) {
+        $_SESSION['photo_erreur'] = 'Galerie invalide.';
+        header('Location: photo.php');
+        exit;
+    }
+
+    // Images liées à cette galerie et à AUCUNE autre galerie
+    // (une image partagée avec une autre galerie est conservée)
+    $stmt = db()->prepare('
+        SELECT i.id, i.img_path
+        FROM image i
+        JOIN galerie_image gi ON gi.image_id = i.id
+        WHERE gi.galerie_id = :gid
+          AND NOT EXISTS (
+              SELECT 1 FROM galerie_image gi2
+              WHERE gi2.image_id = i.id AND gi2.galerie_id <> :gid2
+          )
+    ');
+    $stmt->execute(['gid' => $galerie_id, 'gid2' => $galerie_id]);
+    $images = $stmt->fetchAll();
+
+    $pdo = db();
+    $pdo->beginTransaction();
+    try {
+        // Supprimer les liaisons galerie ↔ image
+        $pdo->prepare('DELETE FROM galerie_image WHERE galerie_id = :gid')
+            ->execute(['gid' => $galerie_id]);
+
+        // Supprimer les images de la table image
+        $delImg = $pdo->prepare('DELETE FROM image WHERE id = :id');
+        foreach ($images as $img) {
+            $delImg->execute(['id' => $img['id']]);
+        }
+
+        // Supprimer la galerie
+        $pdo->prepare('DELETE FROM galerie WHERE id = :gid')
+            ->execute(['gid' => $galerie_id]);
+
+        $pdo->commit();
+    } catch (PDOException $ex) {
+        $pdo->rollBack();
+        $_SESSION['photo_erreur'] = 'Erreur lors de la suppression de la galerie.';
+        header('Location: photo.php?galerie=' . $galerie_id);
+        exit;
+    }
+
+    // Supprimer les fichiers du disque (après le commit)
+    foreach ($images as $img) {
+        if ($img['img_path']) {
+            $fichier = __DIR__ . '/' . $img['img_path'];
+            if (file_exists($fichier)) {
+                unlink($fichier);
+            }
+        }
+    }
+
+    $_SESSION['photo_ok'] = 'Galerie supprimée (' . count($images) . ' photo(s)).';
+    header('Location: photo.php');
     exit;
 }
 

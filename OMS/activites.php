@@ -32,18 +32,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $est_admin && isset($_POST['titre']
     exit;
 }
 
+// Traitement de la suppression d'une activité (admin uniquement)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $est_admin && ($_POST['action'] ?? '') === 'delete_activite') {
+    try {
+        $stmt = $pdo->prepare('DELETE FROM activite_club WHERE id = :id');
+        $stmt->execute([':id' => (int) ($_POST['activite_id'] ?? 0)]);
+    } catch (PDOException $ex) {
+        // Échec typique : l'activité est encore liée à d'autres données (clé étrangère)
+        // Message en session : affiché une seule fois, disparaît au rechargement suivant
+        $_SESSION['activite_erreur'] = 'Impossible de supprimer cette activité : elle est encore liée à d\'autres données (inscriptions…).';
+    }
+
+    header('Location: activites.php');
+    exit;
+}
+
+// Récupère le message d'erreur éventuel puis l'efface pour qu'il ne s'affiche qu'une fois
+$activite_erreur = $_SESSION['activite_erreur'] ?? null;
+unset($_SESSION['activite_erreur']);
+
 $page_active = 'activites';
 $titre_page  = 'Nos activités - OMS';
 include __DIR__ . '/includes/header.php';
 ?>
-    <!-- Contenu Principal (même conteneur que la page photo) -->
-    <main class="container my-5">
+
+<main class="container my-5">
 
         <?php if ($est_admin): ?>
             <div class="mb-4">
                 <button class="btn btn-admin-action" data-bs-toggle="modal" data-bs-target="#addActivityModal">
                     <i class="fas fa-plus"></i> Ajouter une activité
                 </button>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($activite_erreur): ?>
+            <div class="alert alert-danger">
+                <?= htmlspecialchars($activite_erreur, ENT_QUOTES, 'UTF-8') ?>
             </div>
         <?php endif; ?>
 
@@ -66,7 +91,20 @@ $id = (int) $activite['id'];
 $e  = fn($v) => htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8');
 ?>
 <article class="carte-activite">
-    <h2><?= $e($activite['titre']) ?></h2>
+    <div class="d-flex justify-content-between align-items-start gap-3">
+        <h2><?= $e($activite['titre']) ?></h2>
+
+        <?php if ($est_admin): ?>
+            <form method="POST" action="activites.php"
+                  onsubmit="return confirm('Supprimer l\'activité « <?= $e(addslashes($activite['titre'])) ?> » ?');">
+                <input type="hidden" name="action" value="delete_activite">
+                <input type="hidden" name="activite_id" value="<?= $id ?>">
+                <button type="submit" class="btn btn-danger btn-sm rounded-circle" title="Supprimer l'activité">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </form>
+        <?php endif; ?>
+    </div>
     <p><?= $e(mb_strimwidth($activite['description'] ?? '', 0, 150, '…')) ?></p>
     <p class="date-publication">Publié le <?= $e($activite['date']) ?></p>
 
@@ -167,5 +205,31 @@ $e  = fn($v) => htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8');
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+	// Pré-remplit les champs date / heure avec la date et l'heure actuelles de l'appareil
+	// quand on arrive dessus (touche Tab, clic ou tap), uniquement s'ils sont vides.
+	(function () {
+	    const pad = n => String(n).padStart(2, '0');
+
+	    function valeurActuelle(type) {
+	        const d = new Date();
+	        if (type === 'date') {
+	            return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+	        }
+	        if (type === 'time') {
+	            return pad(d.getHours()) + ':' + pad(d.getMinutes());
+	        }
+	        return '';
+	    }
+
+	    document.querySelectorAll('input[type="date"], input[type="time"]').forEach(function (input) {
+	        input.addEventListener('focus', function () {
+	            if (!input.value) {
+	                input.value = valeurActuelle(input.type);
+	            }
+	        });
+	    });
+	})();
+	</script>
 </body>
 </html>

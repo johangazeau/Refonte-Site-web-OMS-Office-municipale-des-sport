@@ -72,8 +72,12 @@ if ($galerie_id > 0) {
                     <button class="btn btn-admin-action" data-bs-toggle="modal" data-bs-target="#addGalerieModal">
                         <i class="fas fa-plus"></i> Nouvelle galerie
                     </button>
+                    
                 </div>
             <?php endif; ?>
+
+            
+            
 
             <div class="row g-4">
                 <?php if (empty($galeries)): ?>
@@ -145,6 +149,15 @@ if ($galerie_id > 0) {
                     <button class="btn btn-admin-action btn-sm ms-auto" data-bs-toggle="modal" data-bs-target="#addImageModal">
                         <i class="fas fa-plus"></i> Ajouter des photos
                     </button>
+
+                    <form method="POST" action="photo_action.php" class="m-0"
+                          onsubmit="return confirm('Supprimer la galerie « <?= htmlspecialchars(addslashes($galerie_titre)) ?> » et toutes ses photos ?');">
+                        <input type="hidden" name="action" value="delete_galerie">
+                        <input type="hidden" name="galerie_id" value="<?= $galerie_id ?>">
+                        <button type="submit" class="btn btn-danger btn-sm rounded-circle" title="Supprimer la galerie">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
                 <?php endif; ?>
             </div>
 
@@ -253,6 +266,31 @@ if ($galerie_id > 0) {
             photoModal.show();
         });
     });
+
+    // ── Pré-remplissage date / heure ──
+    // Quand on arrive sur un champ date/heure vide (Tab, clic ou tap), on met la valeur actuelle de l'appareil.
+    (function () {
+        const pad = n => String(n).padStart(2, '0');
+
+        function valeurActuelle(type) {
+            const d = new Date();
+            if (type === 'date') {
+                return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+            }
+            if (type === 'time') {
+                return pad(d.getHours()) + ':' + pad(d.getMinutes());
+            }
+            return '';
+        }
+
+        document.querySelectorAll('input[type="date"], input[type="time"]').forEach(function (input) {
+            input.addEventListener('focus', function () {
+                if (!input.value) {
+                    input.value = valeurActuelle(input.type);
+                }
+            });
+        });
+    })();
     </script>
 </body>
 </html>

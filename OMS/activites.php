@@ -36,13 +36,16 @@ $page_active = 'activites';
 $titre_page  = 'Nos activités - OMS';
 include __DIR__ . '/includes/header.php';
 ?>
-<?php if ($est_admin): ?>
-    <div class="mb-4">
-        <button class="btn btn-admin-action" data-bs-toggle="modal" data-bs-target="#addActivityModal">
-            <i class="fas fa-plus"></i> Ajouter une activité
-        </button>
-    </div>
-<?php endif; ?>
+    <!-- Contenu Principal (même conteneur que la page photo) -->
+    <main class="container my-5">
+
+        <?php if ($est_admin): ?>
+            <div class="mb-4">
+                <button class="btn btn-admin-action" data-bs-toggle="modal" data-bs-target="#addActivityModal">
+                    <i class="fas fa-plus"></i> Ajouter une activité
+                </button>
+            </div>
+        <?php endif; ?>
 
     <?php
     $sql = "
@@ -97,15 +100,17 @@ $e  = fn($v) => htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8');
     }
     ?>
 
+    </main>
+
 
 <?php if ($est_admin): ?>
 <div class="modal fade" id="addActivityModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Ajouter une activité</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-            </div>
+            <div class="modal-header login-modal-header border-0">
+                        <h5 class="modal-title text-white">Nouvelle activité</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
             <div class="modal-body">
                 <form method="POST" action="activites.php">
                     <div class="mb-3">
@@ -153,6 +158,7 @@ $e  = fn($v) => htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8');
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                     </div>
                 </form>
+            </div>
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
  * Actions possibles : add_galerie, add_images, delete_image
  */
 
-require_once 'includes/db.php';
+require_once 'includes/photo.inc.php';
 require_once 'includes/auth.php';
 
 // ── Seul un admin peut agir ici ──
@@ -33,8 +33,8 @@ if ($action === 'add_galerie') {
     $maxId = db()->query('SELECT COALESCE(MAX(id), 0) + 1 AS next_id FROM galerie')->fetch()['next_id'];
 
     $stmt = db()->prepare('
-        INSERT INTO galerie (id, date, text, permission, titre, id_Activite_Club)
-        VALUES (:id, :date, :texte, 1, :titre, 1)
+        INSERT INTO galerie (id, date, text, permission, activite_id_galerie, galerie_id, titre, id_Activite_Club)
+        VALUES (:id, :date, :texte, 1, 0, 0, :titre, 1)
     ');
     $stmt->execute([
         'id'    => $maxId,

@@ -2,7 +2,7 @@
 $page_active = 'photo';
 $titre_page  = 'Photos - OMS';
 include 'includes/header.php';
-require_once 'includes/db.php';
+require_once 'includes/photo.inc.php';
 
 // ── Récupérer la galerie sélectionnée (si on clique sur une catégorie) ──
 $galerie_id = isset($_GET['galerie']) ? (int) $_GET['galerie'] : 0;
